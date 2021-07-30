@@ -18,6 +18,7 @@ import * as CommonValues from './utils/common-values';
 export default class MaterialTable extends React.Component {
   dataManager = new DataManager();
   checkedForFunctions = false;
+
   constructor(props) {
     super(props);
 
@@ -52,7 +53,45 @@ export default class MaterialTable extends React.Component {
       width: 0
     };
 
+    if (!calculatedProps.options.filtering)
+      this.clearQuery();
+
+
+    this.state.data = this.state.originalData;
+    this.state.renderData = this.state.originalData;
+
+    if (!calculatedProps.options.grouping)
+      this.clearGrouping();
+
+
     this.tableContainerDiv = React.createRef();
+
+  }
+
+  clearGrouping() {
+    for (let column of this.state.columns) {
+      if (column && column.tableData) {
+        column.tableData.groupOrder = undefined;
+      }
+    }
+  }
+
+  clearQuery() {
+    let self = this;
+    let query = self.state.query; // get the query obj
+    self.setState({
+      ...self.dataManager.getRenderState(), // set the render state
+      query: {
+        ...query,
+        filters: [] // set filters to nothing
+      }
+    });
+
+    for (let item in this.state.query.filters) {
+      let tableColumn = this.state.query.filters[item].column;
+      this.dataManager.changeFilterValue(tableColumn.tableData.id, null);
+    }
+
   }
 
   componentDidMount() {
@@ -107,15 +146,15 @@ export default class MaterialTable extends React.Component {
         : false);
 
     shouldReorder &&
-      this.dataManager.changeOrder(
-        defaultSortColumnIndex,
-        defaultSortDirection
-      );
+    this.dataManager.changeOrder(
+      defaultSortColumnIndex,
+      defaultSortDirection
+    );
     isInit && this.dataManager.changeSearchText(props.options.searchText || '');
     isInit &&
-      this.dataManager.changeCurrentPage(
-        props.options.initialPage ? props.options.initialPage : 0
-      );
+    this.dataManager.changeCurrentPage(
+      props.options.initialPage ? props.options.initialPage : 0
+    );
     isInit && this.dataManager.changePageSize(props.options.pageSize);
     this.dataManager.changePaging(props.options.paging);
     isInit && this.dataManager.changeParentFunc(props.parentChildData);
@@ -227,13 +266,31 @@ export default class MaterialTable extends React.Component {
             (action.position === undefined && action.isFreeAction === undefined)
           ) {
             if (typeof action === 'function') {
-              return { action: action, position: 'toolbarOnSelect' };
-            } else return { ...action, position: 'toolbarOnSelect' };
+              return {
+                action: action,
+                position: 'toolbarOnSelect'
+              };
+            } else {
+              return {
+                ...action,
+                position: 'toolbarOnSelect'
+              };
+            }
           } else if (action.isFreeAction) {
             if (typeof action === 'function') {
-              return { action: action, position: 'toolbar' };
-            } else return { ...action, position: 'toolbar' };
-          } else return action;
+              return {
+                action: action,
+                position: 'toolbar'
+              };
+            } else {
+              return {
+                ...action,
+                position: 'toolbar'
+              };
+            }
+          } else {
+            return action;
+          }
         });
     } else {
       calculatedProps.actions = calculatedProps.actions
@@ -245,13 +302,31 @@ export default class MaterialTable extends React.Component {
             (action.position === undefined && action.isFreeAction === undefined)
           ) {
             if (typeof action === 'function') {
-              return { action: action, position: 'row' };
-            } else return { ...action, position: 'row' };
+              return {
+                action: action,
+                position: 'row'
+              };
+            } else {
+              return {
+                ...action,
+                position: 'row'
+              };
+            }
           } else if (action.isFreeAction) {
             if (typeof action === 'function') {
-              return { action: action, position: 'toolbar' };
-            } else return { ...action, position: 'toolbar' };
-          } else return action;
+              return {
+                action: action,
+                position: 'toolbar'
+              };
+            } else {
+              return {
+                ...action,
+                position: 'toolbar'
+              };
+            }
+          } else {
+            return action;
+          }
         });
     }
 
@@ -369,7 +444,7 @@ export default class MaterialTable extends React.Component {
     this.dataManager.changeColumnHidden(column, hidden);
     this.setState(this.dataManager.getRenderState(), () => {
       this.props.onChangeColumnHidden &&
-        this.props.onChangeColumnHidden(column, hidden);
+      this.props.onChangeColumnHidden(column, hidden);
     });
   };
 
@@ -391,12 +466,12 @@ export default class MaterialTable extends React.Component {
       query.orderDirection = orderDirection;
       this.onQueryChange(query, () => {
         this.props.onOrderChange &&
-          this.props.onOrderChange(newOrderBy, orderDirection);
+        this.props.onOrderChange(newOrderBy, orderDirection);
       });
     } else {
       this.setState(this.dataManager.getRenderState(), () => {
         this.props.onOrderChange &&
-          this.props.onOrderChange(newOrderBy, orderDirection);
+        this.props.onOrderChange(newOrderBy, orderDirection);
       });
     }
   };
@@ -407,7 +482,7 @@ export default class MaterialTable extends React.Component {
       query.page = page;
       this.onQueryChange(query, () => {
         this.props.onPageChange &&
-          this.props.onPageChange(page, query.pageSize);
+        this.props.onPageChange(page, query.pageSize);
       });
     } else {
       if (!this.isOutsidePageNumbers(this.props)) {
@@ -415,7 +490,7 @@ export default class MaterialTable extends React.Component {
       }
       this.setState(this.dataManager.getRenderState(), () => {
         this.props.onPageChange &&
-          this.props.onPageChange(page, this.state.pageSize);
+        this.props.onPageChange(page, this.state.pageSize);
       });
     }
   };
@@ -433,13 +508,13 @@ export default class MaterialTable extends React.Component {
       query.page = 0;
       this.onQueryChange(query, () => {
         this.props.onRowsPerPageChange &&
-          this.props.onRowsPerPageChange(pageSize);
+        this.props.onRowsPerPageChange(pageSize);
       });
     } else {
       this.dataManager.changeCurrentPage(0);
       this.setState(this.dataManager.getRenderState(), () => {
         this.props.onRowsPerPageChange &&
-          this.props.onRowsPerPageChange(pageSize);
+        this.props.onRowsPerPageChange(pageSize);
       });
     }
   };
@@ -469,17 +544,23 @@ export default class MaterialTable extends React.Component {
   onGroupRemoved = (groupedColumn, index) => {
     const result = {
       combine: null,
-      destination: { droppableId: 'headers', index: 0 },
+      destination: {
+        droppableId: 'headers',
+        index: 0
+      },
       draggableId: groupedColumn.tableData.id,
       mode: 'FLUID',
       reason: 'DROP',
-      source: { index, droppableId: 'groups' },
+      source: {
+        index,
+        droppableId: 'groups'
+      },
       type: 'DEFAULT'
     };
     this.dataManager.changeByDrag(result);
     this.setState(this.dataManager.getRenderState(), () => {
       this.props.onGroupRemoved &&
-        this.props.onGroupRemoved(groupedColumn, index);
+      this.props.onGroupRemoved(groupedColumn, index);
     });
   };
 
@@ -489,7 +570,10 @@ export default class MaterialTable extends React.Component {
         this.props.editable
           .onRowAdd(newData)
           .then((result) => {
-            this.setState({ isLoading: false, showAddRow: false }, () => {
+            this.setState({
+              isLoading: false,
+              showAddRow: false
+            }, () => {
               if (this.isRemoteData()) {
                 this.onQueryChange(this.state.query);
               }
@@ -500,7 +584,10 @@ export default class MaterialTable extends React.Component {
               message: reason,
               errorCause: 'add'
             };
-            this.setState({ isLoading: false, errorState });
+            this.setState({
+              isLoading: false,
+              errorState
+            });
           });
       });
     } else if (
@@ -530,7 +617,10 @@ export default class MaterialTable extends React.Component {
               message: reason,
               errorCause: 'update'
             };
-            this.setState({ isLoading: false, errorState });
+            this.setState({
+              isLoading: false,
+              errorState
+            });
           });
       });
     } else if (
@@ -560,7 +650,10 @@ export default class MaterialTable extends React.Component {
               message: reason,
               errorCause: 'delete'
             };
-            this.setState({ isLoading: false, errorState });
+            this.setState({
+              isLoading: false,
+              errorState
+            });
           });
       });
     } else if (
@@ -592,7 +685,10 @@ export default class MaterialTable extends React.Component {
               message: reason,
               errorCause: 'bulk edit'
             };
-            this.setState({ isLoading: false, errorState });
+            this.setState({
+              isLoading: false,
+              errorState
+            });
           });
       });
     }
@@ -601,11 +697,11 @@ export default class MaterialTable extends React.Component {
   onEditingCanceled = (mode, rowData) => {
     if (mode === 'add') {
       this.props.editable.onRowAddCancelled &&
-        this.props.editable.onRowAddCancelled();
+      this.props.editable.onRowAddCancelled();
       this.setState({ showAddRow: false });
     } else if (mode === 'update') {
       this.props.editable.onRowUpdateCancelled &&
-        this.props.editable.onRowUpdateCancelled();
+      this.props.editable.onRowUpdateCancelled();
       this.dataManager.changeRowEditing(rowData);
       this.setState(this.dataManager.getRenderState());
     } else if (mode === 'delete') {
@@ -619,8 +715,14 @@ export default class MaterialTable extends React.Component {
   };
 
   onQueryChange = (query, callback) => {
-    query = { ...this.state.query, ...query, error: this.state.errorState };
-    this.setState({ isLoading: true, errorState: undefined }, () => {
+    query = {
+      ...this.state.query, ...query,
+      error: this.state.errorState
+    };
+    this.setState({
+      isLoading: true,
+      errorState: undefined
+    }, () => {
       this.props
         .data(query)
         .then((result) => {
@@ -738,7 +840,7 @@ export default class MaterialTable extends React.Component {
     this.dataManager.changeTreeExpand(path);
     this.setState(this.dataManager.getRenderState(), () => {
       this.props.onTreeExpandChange &&
-        this.props.onTreeExpandChange(data, data.tableData.isTreeExpanded);
+      this.props.onTreeExpandChange(data, data.tableData.isTreeExpanded);
     });
   };
 
@@ -778,9 +880,9 @@ export default class MaterialTable extends React.Component {
       const isOutsidePageNumbers = this.isOutsidePageNumbers(props);
       const currentPage = isOutsidePageNumbers
         ? Math.min(
-            props.page,
-            Math.floor(props.totalCount / this.state.pageSize)
-          )
+          props.page,
+          Math.floor(props.totalCount / this.state.pageSize)
+        )
         : this.state.currentPage;
       const totalCount = isOutsidePageNumbers
         ? props.totalCount
@@ -880,8 +982,8 @@ export default class MaterialTable extends React.Component {
             props.parentChildData
               ? this.state.treefiedDataLength
               : this.state.columns.filter(
-                  (col) => col.tableData.groupOrder > -1
-                ).length > 0
+              (col) => col.tableData.groupOrder > -1
+              ).length > 0
               ? this.state.groupedDataLength
               : this.state.data.length
           }
@@ -1026,8 +1128,8 @@ export default class MaterialTable extends React.Component {
               selectedRows={
                 this.state.selectedCount > 0
                   ? this.state.originalData.filter((a) => {
-                      return a.tableData.checked;
-                    })
+                    return a.tableData.checked;
+                  })
                   : []
               }
               columns={this.state.columns}
@@ -1075,7 +1177,7 @@ export default class MaterialTable extends React.Component {
             />
           )}
           <ScrollBar double={props.options.doubleHorizontalScroll}>
-            <Droppable droppableId="headers" direction="horizontal">
+            <Droppable droppableId='headers' direction='horizontal'>
               {(provided, snapshot) => {
                 const table = this.renderTable(props);
                 return (
@@ -1162,61 +1264,64 @@ export default class MaterialTable extends React.Component {
             </Droppable>
           </ScrollBar>
           {(this.state.isLoading || props.isLoading) &&
-            props.options.loadingType === 'linear' && (
-              <div style={{ position: 'relative', width: '100%' }}>
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    height: '100%',
-                    width: '100%'
-                  }}
-                >
-                  <LinearProgress />
-                </div>
+          props.options.loadingType === 'linear' && (
+            <div style={{
+              position: 'relative',
+              width: '100%'
+            }}>
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  height: '100%',
+                  width: '100%'
+                }}
+              >
+                <LinearProgress />
               </div>
-            )}
+            </div>
+          )}
           {props.options.paginationPosition === 'bottom' ||
           props.options.paginationPosition === 'both'
             ? this.renderFooter()
             : null}
 
           {(this.state.isLoading || props.isLoading) &&
-            props.options.loadingType === 'overlay' && (
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  height: '100%',
-                  width: '100%',
-                  zIndex: 11
-                }}
-              >
-                <props.components.OverlayLoading theme={props.theme} />
-              </div>
-            )}
+          props.options.loadingType === 'overlay' && (
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                height: '100%',
+                width: '100%',
+                zIndex: 11
+              }}
+            >
+              <props.components.OverlayLoading theme={props.theme} />
+            </div>
+          )}
           {this.state.errorState &&
-            this.state.errorState.errorCause === 'query' && (
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  height: '100%',
-                  width: '100%',
-                  zIndex: 11
-                }}
-              >
-                <props.components.OverlayError
-                  error={this.state.errorState}
-                  retry={this.retry}
-                  theme={props.theme}
-                  icon={props.icons.Retry}
-                />
-              </div>
-            )}
+          this.state.errorState.errorCause === 'query' && (
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                height: '100%',
+                width: '100%',
+                zIndex: 11
+              }}
+            >
+              <props.components.OverlayError
+                error={this.state.errorState}
+                retry={this.retry}
+                theme={props.theme}
+                icon={props.icons.Retry}
+              />
+            </div>
+          )}
         </props.components.Container>
       </DragDropContext>
     );
@@ -1239,14 +1344,21 @@ const style = () => ({
   }
 });
 
-const ScrollBar = withStyles(style)(({ double, children, classes }) => {
+const ScrollBar = withStyles(style)(({
+  double,
+  children,
+  classes
+}) => {
   if (double) {
     return <DoubleScrollbar>{children}</DoubleScrollbar>;
   } else {
     return (
       <div
         className={classes.horizontalScrollContainer}
-        style={{ overflowX: 'auto', position: 'relative' }}
+        style={{
+          overflowX: 'auto',
+          position: 'relative'
+        }}
       >
         {children}
       </div>
