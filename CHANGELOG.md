@@ -1,3 +1,26 @@
+### 4.1.0 (2021-08-01)
+
+##### Chores
+
+- clean up how persisting row click events are handled ([d735ef84](https://github.com/material-table-core/core/commit/d735ef8423110d720c74ce6ed771f588cd1e0883))
+- change to force consumers to override ([48a08aa3](https://github.com/material-table-core/core/commit/48a08aa35afcdf7afd67f22efdf7ab9f0d94ed0b))
+
+##### Bug Fixes
+
+- persist row click events, single and double click ([6337c3bf](https://github.com/material-table-core/core/commit/6337c3bfefaee356228426af74f7ac02da55567a))
+
+##### Other Changes
+
+- rename handler ([d97e81e9](https://github.com/material-table-core/core/commit/d97e81e9d48a9ac454da193483e1a7e4dcba717f))
+- build clean up comments ([0bb41291](https://github.com/material-table-core/core/commit/0bb41291f83a737b884fca1c9de5dcced7ea0c22))
+
+## 4.0.0 (2021-07-31)
+
+##### Chores
+
+- update tests to start testing pre and post build ([e9d57280](https://github.com/material-table-core/core/commit/e9d5728003677704d177e714e457703dfe99a6fb))
+- change transpiler ([2d11d942](https://github.com/material-table-core/core/commit/2d11d9422743cdf479180d161507244bf603d3a8))
+
 #### 3.2.5 (2021-07-29)
 
 ##### Bug Fixes
