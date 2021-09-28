@@ -111,7 +111,7 @@ var MTableBody = /*#__PURE__*/function (_React$Component) {
       var _this = this;
 
       return renderData.map(function (data, index) {
-        if (data.tableData.editing || _this.props.bulkEditOpen) {
+        if ((data.tableData || {}).editing || _this.props.bulkEditOpen) {
           return /*#__PURE__*/_react["default"].createElement(_this.props.components.EditRow, {
             columns: _this.props.columns.filter(function (columnDef) {
               return !columnDef.hidden;
@@ -124,7 +124,7 @@ var MTableBody = /*#__PURE__*/function (_React$Component) {
               dateTimePickerLocalization: _this.props.localization.dateTimePickerLocalization
             }),
             key: 'row-' + data.tableData.uuid,
-            mode: _this.props.bulkEditOpen ? 'bulk' : data.tableData.editing,
+            mode: _this.props.bulkEditOpen ? 'bulk' : (data.tableData || {}).editing,
             options: _this.props.options,
             isTreeData: _this.props.isTreeData,
             detailPanel: _this.props.detailPanel,
