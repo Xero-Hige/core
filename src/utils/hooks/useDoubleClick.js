@@ -11,30 +11,39 @@ function useDoubleClick(singleCallback, dbCallback) {
     inputDoubleCallbackRef.current = dbCallback;
     inputSingleCallbackRef.current = singleCallback;
   });
+
+  const reset = () => {
+    clearTimeout(timerRef.current);
+    timerRef.current = null;
+    countRef.current = 0;
+  };
+
   const onClick = React.useCallback((e) => {
     const isDoubleClick = countRef.current + 1 === 2;
     const timerIsPresent = timerRef.current;
     if (timerIsPresent && isDoubleClick) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-      countRef.current = 0;
+      reset();
       if (inputDoubleCallbackRef.current) {
         inputDoubleCallbackRef.current(e);
       }
     }
     if (!timerIsPresent) {
       countRef.current = countRef.current + 1;
-      const timer = setTimeout(() => {
-        clearTimeout(timerRef.current);
-        timerRef.current = null;
-        countRef.current = 0;
+      const singleClick = () => {
+        reset();
         if (inputSingleCallbackRef.current) {
           inputSingleCallbackRef.current(e);
         }
-      }, 200);
-      timerRef.current = timer;
+      };
+      if (inputDoubleCallbackRef.current) {
+        const timer = setTimeout(singleClick, 250);
+        timerRef.current = timer;
+      } else {
+        singleClick();
+      }
     }
   }, []);
+
   return onClick;
 }
 

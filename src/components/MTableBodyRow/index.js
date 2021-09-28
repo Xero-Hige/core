@@ -9,10 +9,10 @@ import {
   TableRow
 } from '@material-ui/core';
 // Internal
-import { MTableDetailPanel } from '../m-table-detailpanel';
-import * as CommonValues from '../../utils/common-values';
-import { useDoubleClick } from '../../utils/hooks/useDoubleClick';
-import { MTableCustomIcon } from '../../components';
+import { MTableDetailPanel } from '@components/m-table-detailpanel';
+import * as CommonValues from '@utils/common-values';
+import { useDoubleClick } from '@utils/hooks/useDoubleClick';
+import { MTableCustomIcon } from '@components';
 
 export default function MTableBodyRow(props) {
   const {
@@ -41,7 +41,7 @@ export default function MTableBodyRow(props) {
     persistEvents,
     scrollWidth,
     onRowClick,
-    onDoubleRowClick,
+    onRowDoubleClick,
     ...rowProps
   } = props;
 
@@ -60,7 +60,7 @@ export default function MTableBodyRow(props) {
 
   const handleOnRowClick = useDoubleClick(
     onRowClick ? (e) => onClick(e, onRowClick) : undefined,
-    onDoubleRowClick ? (e) => onClick(e, onDoubleRowClick) : undefined
+    onRowDoubleClick ? (e) => onClick(e, onRowDoubleClick) : undefined
   );
 
   const getRenderColumns = () => {
@@ -220,7 +220,7 @@ export default function MTableBodyRow(props) {
           }}
         >
           <IconButton
-            aria-label="Detail panel visiblity toggle"
+            aria-label="Detail panel visibility toggle"
             size={size}
             style={{
               transition: 'all ease 200ms',
@@ -286,7 +286,7 @@ export default function MTableBodyRow(props) {
 
               iconButton = (
                 <IconButton
-                  aria-label="Detail panel visiblity toggle"
+                  aria-label="Detail panel visibility toggle"
                   size={size}
                   key={'key-detail-panel-' + index}
                   style={{
@@ -336,7 +336,7 @@ export default function MTableBodyRow(props) {
           style={{ width: 48 + 9 * (props.treeDataMaxLevel - 2) }}
         >
           <IconButton
-            aria-label="Detail panel visiblity toggle"
+            aria-label="Detail panel visibility toggle"
             size={size}
             style={{
               transition: 'all ease 200ms',
@@ -377,7 +377,7 @@ export default function MTableBodyRow(props) {
       };
     }
 
-    if (onRowClick || onDoubleRowClick) {
+    if (onRowClick || onRowDoubleClick) {
       style.cursor = 'pointer';
     }
 
@@ -448,7 +448,7 @@ export default function MTableBodyRow(props) {
           }
           handleOnRowClick(event);
         }}
-        hover={onRowClick !== null || onDoubleRowClick !== null}
+        hover={onRowClick !== null || onRowDoubleClick !== null}
         style={getStyle(props.index, props.level)}
       >
         {renderColumns}
@@ -537,7 +537,7 @@ MTableBodyRow.propTypes = {
   columns: PropTypes.array,
   onToggleDetailPanel: PropTypes.func.isRequired,
   onRowClick: PropTypes.func,
-  onDoubleRowClick: PropTypes.func,
+  onRowDoubleClick: PropTypes.func,
   onEditingApproved: PropTypes.func,
   onEditingCanceled: PropTypes.func,
   errorState: PropTypes.oneOfType([PropTypes.object, PropTypes.bool])

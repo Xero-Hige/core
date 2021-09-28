@@ -1,3 +1,83 @@
+#### 4.3.3 (2021-09-22)
+
+#### 4.3.2 (2021-09-22)
+
+##### New Features
+
+- Add group selection. ([#343](https://github.com/material-table-core/core/pull/343)) ([479798c2](https://github.com/material-table-core/core/commit/479798c28f63fe9c46b5f07b711362aff8c8d30a))
+
+##### Bug Fixes
+
+- regression of optional detail panel function ([6d55e366](https://github.com/material-table-core/core/commit/6d55e3660aa869df555197f1cf8bbfdf33b15d7f))
+
+#### 4.3.1 (2021-08-31)
+
+##### Chores
+
+- install babel module resolver ([092f8206](https://github.com/material-table-core/core/commit/092f82068e217744d4af881b243e77d9674f8ec4))
+- add babel import aliases ([6105afd6](https://github.com/material-table-core/core/commit/6105afd6b4ffd20247003bb3b916633c049e2e2b))
+- create MTableScrollbar ([07434b40](https://github.com/material-table-core/core/commit/07434b407f8b6dbe102746c9bb8a6e1869f6396c))
+
+##### New Features
+
+- **MaterialTable:** aggregate gropuings in localStoarge under material-table-groupings refactor(MTableGroupbar): map groupings feat(MTableGroupbar): clean up local storage when groupings are deleted ([0dd33f20](https://github.com/material-table-core/core/commit/0dd33f20fb515a895d743d01e1dcbde1fe6fad8b))
+
+##### Bug Fixes
+
+- typos in comments and components ([cc2b40e3](https://github.com/material-table-core/core/commit/cc2b40e374bc424fe4cdc3f466f9dff9e340d277))
+
+##### Refactors
+
+- cleanup unused imports ([e3cc8fba](https://github.com/material-table-core/core/commit/e3cc8fbae6eb4a979b72e8392f6f0a8b7336e8d2))
+- persist an array instead of object ([5bf5e92a](https://github.com/material-table-core/core/commit/5bf5e92ad9a90fb8c951f5ba6780dc1a777b6078))
+
+### 4.3.0 (2021-08-07)
+
+##### Bug Fixes
+
+- transpiler issues, move back to babel ([20e9a1e7](https://github.com/material-table-core/core/commit/20e9a1e7b01a74ca128ba615b8d1af0328ec1ab9))
+
+#### 4.2.3 (2021-08-06)
+
+##### Chores
+
+- remove chalk package ([fb817a42](https://github.com/material-table-core/core/commit/fb817a421c4852b55c123b14821669e5fd8ec6b1))
+
+#### 4.2.2 (2021-08-06)
+
+##### Chores
+
+- fix formatting/spacing ([9a7eb079](https://github.com/material-table-core/core/commit/9a7eb07991ce933b06df21c6067dfcb6db66a88e))
+
+##### New Features
+
+- add type module to package.json and fix esbuild issues ([e44ce4f3](https://github.com/material-table-core/core/commit/e44ce4f3d37daa4373faf31962235673a5802b52))
+
+##### Bug Fixes
+
+- issue with jest and modules ([64842a9b](https://github.com/material-table-core/core/commit/64842a9b2d47bdbb63fb1513bdcfd390e12aab3a))
+
+#### 4.2.1 (2021-08-05)
+
+##### Bug Fixes
+
+- delay in onRowClick ([6301b34d](https://github.com/material-table-core/core/commit/6301b34dc71d3994dcc22673fef1ff480f81bb8a))
+
+### 4.2.0 (2021-08-05)
+
+##### Breaking Changes
+
+- rename `onDoubleRowClick` to `onRowDoubleClick` ([32a7f3ac](https://github.com/material-table-core/core/commit/32a7f3ac5f371d3e349e1d2790f325efaa3b3a48))
+
+##### Chores
+
+- fix typo ([cb798b72](https://github.com/material-table-core/core/commit/cb798b721fb5ea22e4dbb88563045a607a23cdc5))
+- move MTableBodyRow to own directory ([4c5354f8](https://github.com/material-table-core/core/commit/4c5354f846ef653f3ce07370400f262114944b13))
+
+##### Refactors
+
+- create MTableCustomIcon component ([b1f8e617](https://github.com/material-table-core/core/commit/b1f8e617da0aab725dc8638189950a7d5c506ee3))
+
 ### 4.1.0 (2021-08-01)
 
 ##### Chores
