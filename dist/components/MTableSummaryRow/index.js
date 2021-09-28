@@ -8,13 +8,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.MTableSummaryRow = MTableSummaryRow;
-exports.default = exports.styles = void 0;
+exports["default"] = exports.styles = void 0;
 
 var React = _interopRequireWildcard(require("react"));
 
 var _core = require("@material-ui/core");
 
-var _utils = require("../MTableCell/utils");
+var _utils = require("../../utils");
 
 var CommonValues = _interopRequireWildcard(require("../../utils/common-values"));
 
@@ -22,7 +22,7 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function MTableSummaryRow(_ref) {
   var data = _ref.data,
@@ -114,10 +114,10 @@ function MTableSummaryRow(_ref) {
 }
 
 MTableSummaryRow.propTypes = {
-  data: _propTypes.default.array,
-  currentData: _propTypes.default.array,
-  columns: _propTypes.default.array,
-  renderSummaryRow: _propTypes.default.func
+  data: _propTypes["default"].array,
+  currentData: _propTypes["default"].array,
+  columns: _propTypes["default"].array,
+  renderSummaryRow: _propTypes["default"].func
 };
 
 var styles = function styles(theme) {
@@ -128,4 +128,4 @@ exports.styles = styles;
 
 var _default = (0, _core.withStyles)(styles)(MTableSummaryRow);
 
-exports.default = _default;
+exports["default"] = _default;

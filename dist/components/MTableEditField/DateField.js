@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -23,7 +23,7 @@ function DateField(_ref) {
       onChange = _ref.onChange,
       locale = _ref.locale,
       forwardedRef = _ref.forwardedRef,
-      rest = (0, _objectWithoutProperties2.default)(_ref, ["columnDef", "value", "onChange", "locale", "forwardedRef"]);
+      rest = (0, _objectWithoutProperties2["default"])(_ref, ["columnDef", "value", "onChange", "locale", "forwardedRef"]);
 
   var getProps = function getProps() {
     var columnDef = rest.columnDef,
@@ -32,16 +32,16 @@ function DateField(_ref) {
         errorState = rest.errorState,
         onBulkEditRowChanged = rest.onBulkEditRowChanged,
         scrollWidth = rest.scrollWidth,
-        remaining = (0, _objectWithoutProperties2.default)(rest, ["columnDef", "rowData", "onRowDataChange", "errorState", "onBulkEditRowChanged", "scrollWidth"]);
+        remaining = (0, _objectWithoutProperties2["default"])(rest, ["columnDef", "rowData", "onRowDataChange", "errorState", "onBulkEditRowChanged", "scrollWidth"]);
     return remaining;
   };
 
   var dateFormat = columnDef.dateSetting && columnDef.dateSetting.format ? columnDef.dateSetting.format : 'dd.MM.yyyy';
   var datePickerProps = getProps();
-  return /*#__PURE__*/_react.default.createElement(_pickers.MuiPickersUtilsProvider, {
-    utils: _dateFns.default,
+  return /*#__PURE__*/_react["default"].createElement(_pickers.MuiPickersUtilsProvider, {
+    utils: _dateFns["default"],
     locale: locale
-  }, /*#__PURE__*/_react.default.createElement(_pickers.DatePicker, (0, _extends2.default)({}, datePickerProps, {
+  }, /*#__PURE__*/_react["default"].createElement(_pickers.DatePicker, (0, _extends2["default"])({}, datePickerProps, {
     ref: forwardedRef,
     format: dateFormat,
     value: value || null,
@@ -58,10 +58,10 @@ function DateField(_ref) {
   })));
 }
 
-var _default = /*#__PURE__*/_react.default.forwardRef(function DateFieldRef(props, ref) {
-  return /*#__PURE__*/_react.default.createElement(DateField, (0, _extends2.default)({}, props, {
+var _default = /*#__PURE__*/_react["default"].forwardRef(function DateFieldRef(props, ref) {
+  return /*#__PURE__*/_react["default"].createElement(DateField, (0, _extends2["default"])({}, props, {
     forwardedRef: ref
   }));
 });
 
-exports.default = _default;
+exports["default"] = _default;

@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -17,11 +17,11 @@ var _core = require("@material-ui/core");
 
 function LookupField(_ref) {
   var forwardedRef = _ref.forwardedRef,
-      props = (0, _objectWithoutProperties2.default)(_ref, ["forwardedRef"]);
-  return /*#__PURE__*/_react.default.createElement(_core.FormControl, {
+      props = (0, _objectWithoutProperties2["default"])(_ref, ["forwardedRef"]);
+  return /*#__PURE__*/_react["default"].createElement(_core.FormControl, {
     ref: forwardedRef,
     error: Boolean(props.error)
-  }, /*#__PURE__*/_react.default.createElement(_core.Select, (0, _extends2.default)({}, props, {
+  }, /*#__PURE__*/_react["default"].createElement(_core.Select, (0, _extends2["default"])({}, props, {
     value: props.value === undefined ? '' : props.value,
     onChange: function onChange(event) {
       return props.onChange(event.target.value);
@@ -33,17 +33,17 @@ function LookupField(_ref) {
       'aria-label': props.columnDef.title
     }
   }), Object.keys(props.columnDef.lookup).map(function (key) {
-    return /*#__PURE__*/_react.default.createElement(_core.MenuItem, {
+    return /*#__PURE__*/_react["default"].createElement(_core.MenuItem, {
       key: key,
       value: key
     }, props.columnDef.lookup[key]);
-  })), Boolean(helperText) && /*#__PURE__*/_react.default.createElement(_core.FormHelperText, null, helperText));
+  })), Boolean(helperText) && /*#__PURE__*/_react["default"].createElement(_core.FormHelperText, null, helperText));
 }
 
-var _default = /*#__PURE__*/_react.default.forwardRef(function LookupFieldRef(props, ref) {
-  return /*#__PURE__*/_react.default.createElement(LookupField, (0, _extends2.default)({}, props, {
+var _default = /*#__PURE__*/_react["default"].forwardRef(function LookupFieldRef(props, ref) {
+  return /*#__PURE__*/_react["default"].createElement(LookupField, (0, _extends2["default"])({}, props, {
     forwardedRef: ref
   }));
 });
 
-exports.default = _default;
+exports["default"] = _default;

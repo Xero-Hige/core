@@ -95,7 +95,7 @@ Object.defineProperty(exports, "MTableToolbar", {
     return _components.MTableToolbar;
   }
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -113,8 +113,8 @@ var _core = require("@material-ui/core");
 
 var _components = require("./components");
 
-_materialTable.default.defaultProps = _defaults.defaultProps;
-_materialTable.default.propTypes = _propTypes.propTypes;
+_materialTable["default"].defaultProps = _defaults.defaultProps;
+_materialTable["default"].propTypes = _propTypes.propTypes;
 
 var styles = function styles(theme) {
   return {
@@ -137,9 +137,9 @@ var styles = function styles(theme) {
 var _default = (0, _core.withStyles)(styles, {
   withTheme: true
 })(function (props) {
-  return /*#__PURE__*/_react.default.createElement(_materialTable.default, (0, _extends2.default)({}, props, {
+  return /*#__PURE__*/_react["default"].createElement(_materialTable["default"], (0, _extends2["default"])({}, props, {
     ref: props.tableRef
   }));
 });
 
-exports.default = _default;
+exports["default"] = _default;

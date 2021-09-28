@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 /**
  * Default data for the `MaterialTable.localization` attribute
@@ -36,4 +36,4 @@ var _default = {
     bulkEditCancel: 'Discard all changes'
   }
 };
-exports.default = _default;
+exports["default"] = _default;

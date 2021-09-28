@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -36,29 +36,29 @@ function DateFilter(_ref) {
   var dateInputElement = null;
 
   if (columnDef.type === 'date') {
-    dateInputElement = /*#__PURE__*/_react.default.createElement(_pickers.DatePicker, (0, _extends2.default)({}, pickerProps, {
+    dateInputElement = /*#__PURE__*/_react["default"].createElement(_pickers.DatePicker, (0, _extends2["default"])({}, pickerProps, {
       ref: forwardedRef
     }));
   } else if (columnDef.type === 'datetime') {
-    dateInputElement = /*#__PURE__*/_react.default.createElement(_pickers.DateTimePicker, (0, _extends2.default)({}, pickerProps, {
+    dateInputElement = /*#__PURE__*/_react["default"].createElement(_pickers.DateTimePicker, (0, _extends2["default"])({}, pickerProps, {
       ref: forwardedRef
     }));
   } else if (columnDef.type === 'time') {
-    dateInputElement = /*#__PURE__*/_react.default.createElement(_pickers.TimePicker, (0, _extends2.default)({}, pickerProps, {
+    dateInputElement = /*#__PURE__*/_react["default"].createElement(_pickers.TimePicker, (0, _extends2["default"])({}, pickerProps, {
       ref: forwardedRef
     }));
   }
 
-  return /*#__PURE__*/_react.default.createElement(_pickers.MuiPickersUtilsProvider, {
-    utils: _dateFns.default,
+  return /*#__PURE__*/_react["default"].createElement(_pickers.MuiPickersUtilsProvider, {
+    utils: _dateFns["default"],
     locale: localization.dateTimePickerLocalization
   }, dateInputElement);
 }
 
-var _default = /*#__PURE__*/_react.default.forwardRef(function DateFilterRef(props, ref) {
-  return /*#__PURE__*/_react.default.createElement(DateFilter, (0, _extends2.default)({}, props, {
+var _default = /*#__PURE__*/_react["default"].forwardRef(function DateFilterRef(props, ref) {
+  return /*#__PURE__*/_react["default"].createElement(DateFilter, (0, _extends2["default"])({}, props, {
     forwardedRef: ref
   }));
 });
 
-exports.default = _default;
+exports["default"] = _default;

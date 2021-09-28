@@ -10,29 +10,33 @@ exports.useDoubleClick = useDoubleClick;
 var _react = _interopRequireDefault(require("react"));
 
 function useDoubleClick(singleCallback, dbCallback) {
-  var countRef = _react.default.useRef(0);
+  var countRef = _react["default"].useRef(0);
   /** Refs for the timer **/
 
 
-  var timerRef = _react.default.useRef(null);
+  var timerRef = _react["default"].useRef(null);
 
-  var inputDoubleCallbackRef = _react.default.useRef(null);
+  var inputDoubleCallbackRef = _react["default"].useRef(null);
 
-  var inputSingleCallbackRef = _react.default.useRef(null);
+  var inputSingleCallbackRef = _react["default"].useRef(null);
 
-  _react.default.useEffect(function () {
+  _react["default"].useEffect(function () {
     inputDoubleCallbackRef.current = dbCallback;
     inputSingleCallbackRef.current = singleCallback;
   });
 
-  var onClick = _react.default.useCallback(function (e) {
+  var reset = function reset() {
+    clearTimeout(timerRef.current);
+    timerRef.current = null;
+    countRef.current = 0;
+  };
+
+  var onClick = _react["default"].useCallback(function (e) {
     var isDoubleClick = countRef.current + 1 === 2;
     var timerIsPresent = timerRef.current;
 
     if (timerIsPresent && isDoubleClick) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-      countRef.current = 0;
+      reset();
 
       if (inputDoubleCallbackRef.current) {
         inputDoubleCallbackRef.current(e);
@@ -41,16 +45,21 @@ function useDoubleClick(singleCallback, dbCallback) {
 
     if (!timerIsPresent) {
       countRef.current = countRef.current + 1;
-      var timer = setTimeout(function () {
-        clearTimeout(timerRef.current);
-        timerRef.current = null;
-        countRef.current = 0;
+
+      var singleClick = function singleClick() {
+        reset();
 
         if (inputSingleCallbackRef.current) {
           inputSingleCallbackRef.current(e);
         }
-      }, 200);
-      timerRef.current = timer;
+      };
+
+      if (inputDoubleCallbackRef.current) {
+        var timer = setTimeout(singleClick, 250);
+        timerRef.current = timer;
+      } else {
+        singleClick();
+      }
     }
   }, []);
 

@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -26,10 +26,10 @@ function DefaultFilter(_ref) {
   var _localization = (0, _utils.getLocalizationData)(localization);
 
   var FilterIcon = icons.Filter;
-  return /*#__PURE__*/_react.default.createElement(_core.TextField, {
+  return /*#__PURE__*/_react["default"].createElement(_core.TextField, {
     ref: forwardedRef,
     style: columnDef.type === 'numeric' ? {
-      float: 'right'
+      "float": 'right'
     } : {},
     type: columnDef.type === 'numeric' ? 'number' : 'search',
     value: columnDef.tableData.filterValue || '',
@@ -41,19 +41,19 @@ function DefaultFilter(_ref) {
       'aria-label': "filter data by ".concat(columnDef.title)
     },
     InputProps: hideFilterIcons || columnDef.hideFilterIcon ? undefined : {
-      startAdornment: /*#__PURE__*/_react.default.createElement(_core.InputAdornment, {
+      startAdornment: /*#__PURE__*/_react["default"].createElement(_core.InputAdornment, {
         position: "start"
-      }, /*#__PURE__*/_react.default.createElement(_core.Tooltip, {
+      }, /*#__PURE__*/_react["default"].createElement(_core.Tooltip, {
         title: _localization.filterTooltip
-      }, /*#__PURE__*/_react.default.createElement(FilterIcon, null)))
+      }, /*#__PURE__*/_react["default"].createElement(FilterIcon, null)))
     }
   });
 }
 
-var _default = /*#__PURE__*/_react.default.forwardRef(function DefaultFilterRef(props, ref) {
-  return /*#__PURE__*/_react.default.createElement(DefaultFilter, (0, _extends2.default)({}, props, {
+var _default = /*#__PURE__*/_react["default"].forwardRef(function DefaultFilterRef(props, ref) {
+  return /*#__PURE__*/_react["default"].createElement(DefaultFilter, (0, _extends2["default"])({}, props, {
     forwardedRef: ref
   }));
 });
 
-exports.default = _default;
+exports["default"] = _default;

@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -27,7 +27,7 @@ var _react = _interopRequireDefault(require("react"));
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 /* eslint-enable no-unused-vars */
 function MTablePaginationInner(props) {
@@ -58,7 +58,7 @@ function MTablePaginationInner(props) {
 
     for (var p = start; p <= end; p++) {
       var buttonVariant = p === props.page ? 'contained' : 'text';
-      buttons.push( /*#__PURE__*/_react.default.createElement(_Button.default, {
+      buttons.push( /*#__PURE__*/_react["default"].createElement(_Button["default"], {
         size: "small",
         style: {
           boxShadow: 'none',
@@ -74,7 +74,7 @@ function MTablePaginationInner(props) {
       }, p + 1));
     }
 
-    return /*#__PURE__*/_react.default.createElement("span", null, buttons);
+    return /*#__PURE__*/_react["default"].createElement("span", null, buttons);
   }
 
   function render() {
@@ -90,36 +90,36 @@ function MTablePaginationInner(props) {
     var maxPages = Math.ceil(count / rowsPerPage) - 1;
     var pageStart = Math.max(page - 1, 0);
     var pageEnd = Math.min(maxPages, page + 1);
-    return /*#__PURE__*/_react.default.createElement("div", {
+    return /*#__PURE__*/_react["default"].createElement("div", {
       className: classes.root,
       ref: props.forwardedRef
-    }, showFirstLastPageButtons && /*#__PURE__*/_react.default.createElement(_Tooltip.default, {
+    }, showFirstLastPageButtons && /*#__PURE__*/_react["default"].createElement(_Tooltip["default"], {
       title: localization.firstTooltip
-    }, /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(_IconButton.default, {
+    }, /*#__PURE__*/_react["default"].createElement("span", null, /*#__PURE__*/_react["default"].createElement(_IconButton["default"], {
       onClick: handleFirstPageButtonClick,
       disabled: page === 0,
       "aria-label": localization.firstAriaLabel
-    }, theme.direction === 'rtl' ? /*#__PURE__*/_react.default.createElement(props.icons.LastPage, null) : /*#__PURE__*/_react.default.createElement(props.icons.FirstPage, null)))), /*#__PURE__*/_react.default.createElement(_Tooltip.default, {
+    }, theme.direction === 'rtl' ? /*#__PURE__*/_react["default"].createElement(props.icons.LastPage, null) : /*#__PURE__*/_react["default"].createElement(props.icons.FirstPage, null)))), /*#__PURE__*/_react["default"].createElement(_Tooltip["default"], {
       title: localization.previousTooltip
-    }, /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(_IconButton.default, {
+    }, /*#__PURE__*/_react["default"].createElement("span", null, /*#__PURE__*/_react["default"].createElement(_IconButton["default"], {
       onClick: handleBackButtonClick,
       disabled: page === 0,
       "aria-label": localization.previousAriaLabel
-    }, /*#__PURE__*/_react.default.createElement(props.icons.PreviousPage, null)))), /*#__PURE__*/_react.default.createElement(_Hidden.default, {
+    }, /*#__PURE__*/_react["default"].createElement(props.icons.PreviousPage, null)))), /*#__PURE__*/_react["default"].createElement(_Hidden["default"], {
       smDown: true
-    }, renderPagesButton(pageStart, pageEnd)), /*#__PURE__*/_react.default.createElement(_Tooltip.default, {
+    }, renderPagesButton(pageStart, pageEnd)), /*#__PURE__*/_react["default"].createElement(_Tooltip["default"], {
       title: localization.nextTooltip
-    }, /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(_IconButton.default, {
+    }, /*#__PURE__*/_react["default"].createElement("span", null, /*#__PURE__*/_react["default"].createElement(_IconButton["default"], {
       onClick: handleNextButtonClick,
       disabled: page >= maxPages,
       "aria-label": localization.nextAriaLabel
-    }, /*#__PURE__*/_react.default.createElement(props.icons.NextPage, null)))), showFirstLastPageButtons && /*#__PURE__*/_react.default.createElement(_Tooltip.default, {
+    }, /*#__PURE__*/_react["default"].createElement(props.icons.NextPage, null)))), showFirstLastPageButtons && /*#__PURE__*/_react["default"].createElement(_Tooltip["default"], {
       title: localization.lastTooltip
-    }, /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(_IconButton.default, {
+    }, /*#__PURE__*/_react["default"].createElement("span", null, /*#__PURE__*/_react["default"].createElement(_IconButton["default"], {
       onClick: handleLastPageButtonClick,
       disabled: page >= Math.ceil(count / rowsPerPage) - 1,
       "aria-label": localization.lastAriaLabel
-    }, theme.direction === 'rtl' ? /*#__PURE__*/_react.default.createElement(props.icons.FirstPage, null) : /*#__PURE__*/_react.default.createElement(props.icons.LastPage, null)))));
+    }, theme.direction === 'rtl' ? /*#__PURE__*/_react["default"].createElement(props.icons.FirstPage, null) : /*#__PURE__*/_react["default"].createElement(props.icons.LastPage, null)))));
   }
 
   return render();
@@ -136,14 +136,14 @@ var actionsStyles = function actionsStyles(theme) {
 };
 
 MTablePaginationInner.propTypes = {
-  onPageChange: _propTypes.default.func,
-  page: _propTypes.default.number,
-  count: _propTypes.default.number,
-  rowsPerPage: _propTypes.default.number,
-  classes: _propTypes.default.object,
-  localization: _propTypes.default.object,
-  theme: _propTypes.default.any,
-  showFirstLastPageButtons: _propTypes.default.bool
+  onPageChange: _propTypes["default"].func,
+  page: _propTypes["default"].number,
+  count: _propTypes["default"].number,
+  rowsPerPage: _propTypes["default"].number,
+  classes: _propTypes["default"].object,
+  localization: _propTypes["default"].object,
+  theme: _propTypes["default"].any,
+  showFirstLastPageButtons: _propTypes["default"].bool
 };
 MTablePaginationInner.defaultProps = {
   showFirstLastPageButtons: true,
@@ -161,8 +161,8 @@ MTablePaginationInner.defaultProps = {
   }
 };
 
-var MTableSteppedPaginationRef = /*#__PURE__*/_react.default.forwardRef(function MTableSteppedPaginationRef(props, ref) {
-  return /*#__PURE__*/_react.default.createElement(MTablePaginationInner, (0, _extends2.default)({}, props, {
+var MTableSteppedPaginationRef = /*#__PURE__*/_react["default"].forwardRef(function MTableSteppedPaginationRef(props, ref) {
+  return /*#__PURE__*/_react["default"].createElement(MTablePaginationInner, (0, _extends2["default"])({}, props, {
     forwardedRef: ref
   }));
 });
@@ -171,4 +171,4 @@ var MTableSteppedPagination = (0, _core.withStyles)(actionsStyles, {
   withTheme: true
 })(MTableSteppedPaginationRef);
 var _default = MTableSteppedPagination;
-exports.default = _default;
+exports["default"] = _default;

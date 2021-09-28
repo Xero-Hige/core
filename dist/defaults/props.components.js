@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _core = require("@material-ui/core");
 
@@ -32,4 +32,4 @@ var _default = {
   SummaryRow: _components.MTableSummaryRow,
   Toolbar: _components.MTableToolbar
 };
-exports.default = _default;
+exports["default"] = _default;

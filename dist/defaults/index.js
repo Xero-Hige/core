@@ -19,13 +19,13 @@ var defaultProps = {
   actions: [],
   classes: {},
   columns: [],
-  components: _props.default,
+  components: _props["default"],
   data: [],
-  icons: _props2.default,
+  icons: _props2["default"],
   isLoading: false,
   title: 'Table Title',
-  options: _props4.default,
-  localization: _props3.default,
+  options: _props4["default"],
+  localization: _props3["default"],
   style: {}
 };
 exports.defaultProps = defaultProps;

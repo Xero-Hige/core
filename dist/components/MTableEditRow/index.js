@@ -7,7 +7,7 @@ var _typeof = require("@babel/runtime/helpers/typeof");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -35,11 +35,11 @@ var _validate = require("../../utils/validate");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function MTableEditRow(props) {
   var _useState = (0, _react.useState)(function () {
@@ -62,7 +62,7 @@ function MTableEditRow(props) {
       data: data
     };
   }),
-      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+      _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
       state = _useState2[0],
       setState = _useState2[1];
 
@@ -123,7 +123,7 @@ function MTableEditRow(props) {
 
       if (!columnDef.field || !allowEditing) {
         var readonlyValue = props.getFieldValue(state.data, columnDef);
-        return /*#__PURE__*/_react.default.createElement(props.components.Cell, {
+        return /*#__PURE__*/_react["default"].createElement(props.components.Cell, {
           size: size,
           icons: props.icons,
           columnDef: columnDef,
@@ -134,15 +134,15 @@ function MTableEditRow(props) {
         });
       } else {
         var editComponent = columnDef.editComponent,
-            cellProps = (0, _objectWithoutProperties2.default)(columnDef, ["editComponent"]);
+            cellProps = (0, _objectWithoutProperties2["default"])(columnDef, ["editComponent"]);
         var EditComponent = editComponent || props.components.EditField;
         var error = (0, _validate.validateInput)(columnDef, state.data);
-        return /*#__PURE__*/_react.default.createElement(_TableCell.default, {
+        return /*#__PURE__*/_react["default"].createElement(_TableCell["default"], {
           size: size,
           key: columnDef.tableData.id,
           align: ['numeric'].indexOf(columnDef.type) !== -1 ? 'right' : 'left',
           style: getCellStyle(columnDef, value)
-        }, /*#__PURE__*/_react.default.createElement(EditComponent, {
+        }, /*#__PURE__*/_react["default"].createElement(EditComponent, {
           key: columnDef.tableData.id,
           columnDef: cellProps,
           value: value,
@@ -209,7 +209,7 @@ function MTableEditRow(props) {
         props.onEditingCanceled(props.mode, props.data);
       }
     }];
-    return /*#__PURE__*/_react.default.createElement(_TableCell.default, {
+    return /*#__PURE__*/_react["default"].createElement(_TableCell["default"], {
       size: size,
       padding: "none",
       key: "key-actions-column",
@@ -217,7 +217,7 @@ function MTableEditRow(props) {
         width: 42 * actions.length,
         padding: '0px 5px'
       }, props.options.editCellStyle)
-    }, /*#__PURE__*/_react.default.createElement(props.components.Actions, {
+    }, /*#__PURE__*/_react["default"].createElement(props.components.Actions, {
       data: props.data,
       actions: actions,
       components: props.components,
@@ -256,25 +256,25 @@ function MTableEditRow(props) {
       var colSpan = props.columns.filter(function (columnDef) {
         return !columnDef.hidden && !(columnDef.tableData.groupOrder > -1);
       }).length;
-      columns = [/*#__PURE__*/_react.default.createElement(_TableCell.default, {
+      columns = [/*#__PURE__*/_react["default"].createElement(_TableCell["default"], {
         size: size,
         padding: props.options.actionsColumnIndex === 0 ? 'none' : undefined,
         key: "key-edit-cell",
         colSpan: colSpan
-      }, /*#__PURE__*/_react.default.createElement(_Typography.default, {
+      }, /*#__PURE__*/_react["default"].createElement(_Typography["default"], {
         variant: "h6"
       }, localization.deleteText))];
     }
 
     if (props.options.selection) {
-      columns.splice(0, 0, /*#__PURE__*/_react.default.createElement(_TableCell.default, {
+      columns.splice(0, 0, /*#__PURE__*/_react["default"].createElement(_TableCell["default"], {
         padding: "none",
         key: "key-selection-cell"
       }));
     }
 
     if (props.isTreeData) {
-      columns.splice(0, 0, /*#__PURE__*/_react.default.createElement(_TableCell.default, {
+      columns.splice(0, 0, /*#__PURE__*/_react["default"].createElement(_TableCell["default"], {
         padding: "none",
         key: "key-tree-data-cell"
       }));
@@ -302,9 +302,9 @@ function MTableEditRow(props) {
 
 
     if (props.detailPanel && props.mode !== 'bulk') {
-      var aligment = props.options.detailPanelColumnAlignment;
-      var index = aligment === 'left' ? 0 : columns.length;
-      columns.splice(index, 0, /*#__PURE__*/_react.default.createElement(_TableCell.default, {
+      var alignment = props.options.detailPanelColumnAlignment;
+      var index = alignment === 'left' ? 0 : columns.length;
+      columns.splice(index, 0, /*#__PURE__*/_react["default"].createElement(_TableCell["default"], {
         padding: "none",
         key: "key-detail-panel-cell"
       }));
@@ -313,7 +313,7 @@ function MTableEditRow(props) {
     props.columns.filter(function (columnDef) {
       return columnDef.tableData.groupOrder > -1;
     }).forEach(function (columnDef) {
-      columns.splice(0, 0, /*#__PURE__*/_react.default.createElement(_TableCell.default, {
+      columns.splice(0, 0, /*#__PURE__*/_react["default"].createElement(_TableCell["default"], {
         padding: "none",
         key: 'key-group-cell' + columnDef.tableData.id
       }));
@@ -338,8 +338,8 @@ function MTableEditRow(props) {
         bulkEditChangedRows = props.bulkEditChangedRows,
         scrollWidth = props.scrollWidth,
         forwardedRef = props.forwardedRef,
-        rowProps = (0, _objectWithoutProperties2.default)(props, ["detailPanel", "isTreeData", "onRowClick", "onRowSelected", "onTreeExpandChanged", "onToggleDetailPanel", "onEditingApproved", "onEditingCanceled", "getFieldValue", "components", "icons", "columns", "localization", "options", "actions", "errorState", "onBulkEditRowChanged", "bulkEditChangedRows", "scrollWidth", "forwardedRef"]);
-    return /*#__PURE__*/_react.default.createElement(_TableRow.default, (0, _extends2.default)({
+        rowProps = (0, _objectWithoutProperties2["default"])(props, ["detailPanel", "isTreeData", "onRowClick", "onRowSelected", "onTreeExpandChanged", "onToggleDetailPanel", "onEditingApproved", "onEditingCanceled", "getFieldValue", "components", "icons", "columns", "localization", "options", "actions", "errorState", "onBulkEditRowChanged", "bulkEditChangedRows", "scrollWidth", "forwardedRef"]);
+    return /*#__PURE__*/_react["default"].createElement(_TableRow["default"], (0, _extends2["default"])({
       onKeyDown: handleKeyDown
     }, rowProps, {
       ref: forwardedRef,
@@ -363,28 +363,28 @@ MTableEditRow.defaultProps = {
   onBulkEditRowChanged: function onBulkEditRowChanged() {}
 };
 MTableEditRow.propTypes = {
-  actions: _propTypes.default.array,
-  icons: _propTypes.default.any.isRequired,
-  index: _propTypes.default.number.isRequired,
-  data: _propTypes.default.object,
-  detailPanel: _propTypes.default.oneOfType([_propTypes.default.func, _propTypes.default.arrayOf(_propTypes.default.oneOfType([_propTypes.default.object, _propTypes.default.func]))]),
-  options: _propTypes.default.object.isRequired,
-  onRowSelected: _propTypes.default.func,
-  path: _propTypes.default.arrayOf(_propTypes.default.number),
-  columns: _propTypes.default.array,
-  onRowClick: _propTypes.default.func,
-  onEditingApproved: _propTypes.default.func,
-  onEditingCanceled: _propTypes.default.func,
-  localization: _propTypes.default.object,
-  getFieldValue: _propTypes.default.func,
-  errorState: _propTypes.default.oneOfType([_propTypes.default.object, _propTypes.default.bool]),
-  onBulkEditRowChanged: _propTypes.default.func
+  actions: _propTypes["default"].array,
+  icons: _propTypes["default"].any.isRequired,
+  index: _propTypes["default"].number.isRequired,
+  data: _propTypes["default"].object,
+  detailPanel: _propTypes["default"].oneOfType([_propTypes["default"].func, _propTypes["default"].arrayOf(_propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].func]))]),
+  options: _propTypes["default"].object.isRequired,
+  onRowSelected: _propTypes["default"].func,
+  path: _propTypes["default"].arrayOf(_propTypes["default"].number),
+  columns: _propTypes["default"].array,
+  onRowClick: _propTypes["default"].func,
+  onEditingApproved: _propTypes["default"].func,
+  onEditingCanceled: _propTypes["default"].func,
+  localization: _propTypes["default"].object,
+  getFieldValue: _propTypes["default"].func,
+  errorState: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].bool]),
+  onBulkEditRowChanged: _propTypes["default"].func
 };
 
-var _default = /*#__PURE__*/_react.default.forwardRef(function MTableWithRefEditRow(props, ref) {
-  return /*#__PURE__*/_react.default.createElement(MTableEditRow, (0, _extends2.default)({}, props, {
+var _default = /*#__PURE__*/_react["default"].forwardRef(function MTableWithRefEditRow(props, ref) {
+  return /*#__PURE__*/_react["default"].createElement(MTableEditRow, (0, _extends2["default"])({}, props, {
     forwardedRef: ref
   }));
 });
 
-exports.default = _default;
+exports["default"] = _default;

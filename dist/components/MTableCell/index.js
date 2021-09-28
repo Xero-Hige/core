@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -17,11 +17,10 @@ var _TableCell = _interopRequireDefault(require("@material-ui/core/TableCell"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _utils = require("./utils");
+var _cellUtils = require("./cellUtils");
 
-/* eslint-disable no-unused-vars */
+var _utils = require("../../utils");
 
-/* eslint-enable no-unused-vars */
 function MTableCell(props) {
   var forwardedRef = props.forwardedRef,
       scrollWidth = props.scrollWidth,
@@ -30,19 +29,23 @@ function MTableCell(props) {
       cellEditable = props.cellEditable,
       columnDef = props.columnDef,
       errorState = props.errorState,
-      spreadProps = (0, _objectWithoutProperties2.default)(props, ["forwardedRef", "scrollWidth", "rowData", "onCellEditStarted", "cellEditable", "columnDef", "errorState"]);
+      spreadProps = (0, _objectWithoutProperties2["default"])(props, ["forwardedRef", "scrollWidth", "rowData", "onCellEditStarted", "cellEditable", "columnDef", "errorState"]);
 
   var handleClickCell = function handleClickCell(e) {
     if (props.columnDef.disableClick) {
       e.stopPropagation();
     }
   };
+  /* eslint-disable indent */
+
 
   var cellAlignment = columnDef.align !== undefined ? columnDef.align : ['numeric', 'currency'].indexOf(columnDef.type) !== -1 ? 'right' : 'left';
-  var renderValue = (0, _utils.getRenderValue)(props);
+  /* eslint-enable indent */
+
+  var renderValue = (0, _cellUtils.getRenderValue)(props);
 
   if (cellEditable) {
-    renderValue = /*#__PURE__*/_react.default.createElement("div", {
+    renderValue = /*#__PURE__*/_react["default"].createElement("div", {
       style: {
         borderBottom: '1px dashed grey',
         cursor: 'pointer',
@@ -55,7 +58,7 @@ function MTableCell(props) {
     }, renderValue);
   }
 
-  return /*#__PURE__*/_react.default.createElement(_TableCell.default, (0, _extends2.default)({}, spreadProps, {
+  return /*#__PURE__*/_react["default"].createElement(_TableCell["default"], (0, _extends2["default"])({}, spreadProps, {
     size: props.size,
     value: props.value,
     style: (0, _utils.getStyle)(props),
@@ -71,22 +74,22 @@ MTableCell.defaultProps = {
   value: undefined
 };
 MTableCell.propTypes = {
-  columnDef: _propTypes.default.object.isRequired,
-  value: _propTypes.default.any,
-  rowData: _propTypes.default.object,
-  errorState: _propTypes.default.oneOfType([_propTypes.default.object, _propTypes.default.bool]),
-  forwardedRef: _propTypes.default.oneOfType([_propTypes.default.element, _propTypes.default.func]),
-  size: _propTypes.default.string,
-  colSpan: _propTypes.default.number,
-  children: _propTypes.default.element,
-  cellEditable: _propTypes.default.bool,
-  onCellEditStarted: _propTypes.default.func
+  columnDef: _propTypes["default"].object.isRequired,
+  value: _propTypes["default"].any,
+  rowData: _propTypes["default"].object,
+  errorState: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].bool]),
+  forwardedRef: _propTypes["default"].oneOfType([_propTypes["default"].element, _propTypes["default"].func]),
+  size: _propTypes["default"].string,
+  colSpan: _propTypes["default"].number,
+  children: _propTypes["default"].element,
+  cellEditable: _propTypes["default"].bool,
+  onCellEditStarted: _propTypes["default"].func
 };
 
-var _default = /*#__PURE__*/_react.default.forwardRef(function MTableCellRef(props, ref) {
-  return /*#__PURE__*/_react.default.createElement(MTableCell, (0, _extends2.default)({}, props, {
+var _default = /*#__PURE__*/_react["default"].forwardRef(function MTableCellRef(props, ref) {
+  return /*#__PURE__*/_react["default"].createElement(MTableCell, (0, _extends2["default"])({}, props, {
     forwardedRef: ref
   }));
 });
 
-exports.default = _default;
+exports["default"] = _default;

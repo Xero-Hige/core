@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 /**
  * Default data for `MaterialTable.options` attribute
@@ -34,6 +34,7 @@ var _default = {
   showEmptyDataSourceMessage: true,
   showFirstLastPageButtons: true,
   showSelectAllCheckbox: true,
+  showSelectGroupCheckbox: true,
   search: true,
   showTitle: true,
   showTextRowsSelected: true,
@@ -57,4 +58,4 @@ var _default = {
   thirdSortClick: true,
   overflowY: 'auto'
 };
-exports.default = _default;
+exports["default"] = _default;

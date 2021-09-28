@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -19,11 +19,11 @@ var _pickers = require("@material-ui/pickers");
 
 function DateTimeField(_ref) {
   var forwardedRef = _ref.forwardedRef,
-      props = (0, _objectWithoutProperties2.default)(_ref, ["forwardedRef"]);
-  return /*#__PURE__*/_react.default.createElement(_pickers.MuiPickersUtilsProvider, {
-    utils: _dateFns.default,
+      props = (0, _objectWithoutProperties2["default"])(_ref, ["forwardedRef"]);
+  return /*#__PURE__*/_react["default"].createElement(_pickers.MuiPickersUtilsProvider, {
+    utils: _dateFns["default"],
     locale: props.locale
-  }, /*#__PURE__*/_react.default.createElement(_pickers.DateTimePicker, (0, _extends2.default)({}, props, {
+  }, /*#__PURE__*/_react["default"].createElement(_pickers.DateTimePicker, (0, _extends2["default"])({}, props, {
     ref: forwardedRef,
     format: "dd.MM.yyyy HH:mm:ss",
     value: props.value || null,
@@ -40,10 +40,10 @@ function DateTimeField(_ref) {
   })));
 }
 
-var _default = /*#__PURE__*/_react.default.forwardRef(function DateTimeFieldRef(props, ref) {
-  return /*#__PURE__*/_react.default.createElement(DateTimeField, (0, _extends2.default)({}, props, {
+var _default = /*#__PURE__*/_react["default"].forwardRef(function DateTimeFieldRef(props, ref) {
+  return /*#__PURE__*/_react["default"].createElement(DateTimeField, (0, _extends2["default"])({}, props, {
     forwardedRef: ref
   }));
 });
 
-exports.default = _default;
+exports["default"] = _default;

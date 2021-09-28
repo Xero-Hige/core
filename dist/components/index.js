@@ -8,115 +8,127 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "OverlayLoading", {
   enumerable: true,
   get: function get() {
-    return _OverlayLoading.default;
+    return _OverlayLoading["default"];
   }
 });
 Object.defineProperty(exports, "OverlayError", {
   enumerable: true,
   get: function get() {
-    return _OverlayError.default;
+    return _OverlayError["default"];
   }
 });
 Object.defineProperty(exports, "Container", {
   enumerable: true,
   get: function get() {
-    return _Container.default;
+    return _Container["default"];
+  }
+});
+Object.defineProperty(exports, "MTableScrollbar", {
+  enumerable: true,
+  get: function get() {
+    return _MTableScrollbar["default"];
   }
 });
 Object.defineProperty(exports, "MTableBody", {
   enumerable: true,
   get: function get() {
-    return _mTableBody.default;
-  }
-});
-Object.defineProperty(exports, "MTableBodyRow", {
-  enumerable: true,
-  get: function get() {
-    return _mTableBodyRow.default;
+    return _mTableBody["default"];
   }
 });
 Object.defineProperty(exports, "MTableEditField", {
   enumerable: true,
   get: function get() {
-    return _mTableEditField.default;
+    return _mTableEditField["default"];
   }
 });
 Object.defineProperty(exports, "MTableEditCell", {
   enumerable: true,
   get: function get() {
-    return _mTableEditCell.default;
+    return _mTableEditCell["default"];
   }
 });
 Object.defineProperty(exports, "MTableAction", {
   enumerable: true,
   get: function get() {
-    return _MTableAction.default;
+    return _MTableAction["default"];
   }
 });
 Object.defineProperty(exports, "MTableActions", {
   enumerable: true,
   get: function get() {
-    return _MTableActions.default;
+    return _MTableActions["default"];
+  }
+});
+Object.defineProperty(exports, "MTableBodyRow", {
+  enumerable: true,
+  get: function get() {
+    return _MTableBodyRow["default"];
   }
 });
 Object.defineProperty(exports, "MTableCell", {
   enumerable: true,
   get: function get() {
-    return _MTableCell.default;
+    return _MTableCell["default"];
+  }
+});
+Object.defineProperty(exports, "MTableCustomIcon", {
+  enumerable: true,
+  get: function get() {
+    return _MTableCustomIcon["default"];
   }
 });
 Object.defineProperty(exports, "MTableEditRow", {
   enumerable: true,
   get: function get() {
-    return _MTableEditRow.default;
+    return _MTableEditRow["default"];
   }
 });
 Object.defineProperty(exports, "MTableFilterRow", {
   enumerable: true,
   get: function get() {
-    return _MTableFilterRow.default;
+    return _MTableFilterRow["default"];
   }
 });
 Object.defineProperty(exports, "MTableGroupbar", {
   enumerable: true,
   get: function get() {
-    return _MTableGroupbar.default;
+    return _MTableGroupbar["default"];
   }
 });
 Object.defineProperty(exports, "MTableGroupRow", {
   enumerable: true,
   get: function get() {
-    return _MTableGroupRow.default;
+    return _MTableGroupRow["default"];
   }
 });
 Object.defineProperty(exports, "MTableHeader", {
   enumerable: true,
   get: function get() {
-    return _MTableHeader.default;
+    return _MTableHeader["default"];
   }
 });
 Object.defineProperty(exports, "MTableSteppedPagination", {
   enumerable: true,
   get: function get() {
-    return _MTableSteppedPaginationInner.default;
+    return _MTableSteppedPaginationInner["default"];
   }
 });
 Object.defineProperty(exports, "MTablePagination", {
   enumerable: true,
   get: function get() {
-    return _MTablePagination.default;
+    return _MTablePagination["default"];
   }
 });
 Object.defineProperty(exports, "MTableSummaryRow", {
   enumerable: true,
   get: function get() {
-    return _MTableSummaryRow.default;
+    return _MTableSummaryRow["default"];
   }
 });
 Object.defineProperty(exports, "MTableToolbar", {
   enumerable: true,
   get: function get() {
-    return _MTableToolbar.default;
+    return _MTableToolbar["default"];
   }
 });
 
@@ -126,9 +138,9 @@ var _OverlayError = _interopRequireDefault(require("./Overlay/OverlayError.js"))
 
 var _Container = _interopRequireDefault(require("./Container"));
 
-var _mTableBody = _interopRequireDefault(require("./m-table-body"));
+var _MTableScrollbar = _interopRequireDefault(require("./MTableScrollbar"));
 
-var _mTableBodyRow = _interopRequireDefault(require("./m-table-body-row"));
+var _mTableBody = _interopRequireDefault(require("./m-table-body"));
 
 var _mTableEditField = _interopRequireDefault(require("./m-table-edit-field"));
 
@@ -138,7 +150,11 @@ var _MTableAction = _interopRequireDefault(require("./MTableAction"));
 
 var _MTableActions = _interopRequireDefault(require("./MTableActions"));
 
+var _MTableBodyRow = _interopRequireDefault(require("./MTableBodyRow"));
+
 var _MTableCell = _interopRequireDefault(require("./MTableCell"));
+
+var _MTableCustomIcon = _interopRequireDefault(require("./MTableCustomIcon"));
 
 var _MTableEditRow = _interopRequireDefault(require("./MTableEditRow"));
 
