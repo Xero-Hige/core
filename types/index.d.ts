@@ -64,7 +64,7 @@ export interface MaterialTableProps<RowData extends object> {
     rowData?: RowData,
     toggleDetailPanel?: (panelIndex?: number) => void
   ) => void;
-  onDoubleRowClick?: (
+  onRowDoubleClick?: (
     event?: React.MouseEvent,
     rowData?: RowData,
     toggleDetailPanel?: (panelIndex?: number) => void
@@ -367,11 +367,13 @@ export interface Options<RowData extends object> {
   showEmptyDataSourceMessage?: boolean;
   showFirstLastPageButtons?: boolean;
   showSelectAllCheckbox?: boolean;
+  showSelectGroupCheckbox?: boolean;
   showTitle?: boolean;
   showTextRowsSelected?: boolean;
   showDetailPanelIcon?: boolean;
   search?: boolean;
   searchText?: string;
+  searchDebounceDelay?: number;
   searchFieldAlignment?: 'left' | 'right';
   searchFieldStyle?: React.CSSProperties;
   searchFieldVariant?: 'standard' | 'filled' | 'outlined';
