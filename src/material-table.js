@@ -1,19 +1,21 @@
-/* eslint-disable no-unused-vars */
-import Table from '@material-ui/core/Table';
-import TableFooter from '@material-ui/core/TableFooter';
-import TableRow from '@material-ui/core/TableRow';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import DoubleScrollbar from 'react-double-scrollbar';
-import * as React from 'react';
-import { MTablePagination, MTableSteppedPagination } from './components';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import DataManager from './utils/data-manager';
+import React from 'react';
 import { debounce } from 'debounce';
 import equal from 'fast-deep-equal/react';
-import { withStyles } from '@material-ui/core';
-import * as CommonValues from './utils/common-values';
-
-/* eslint-enable no-unused-vars */
+import cloneDeep from 'lodash/cloneDeep';
+import {
+  Table,
+  TableFooter,
+  TableRow,
+  LinearProgress
+} from '@material-ui/core';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import DataManager from '@utils/data-manager';
+import * as CommonValues from '@utils/common-values';
+import {
+  MTablePagination,
+  MTableSteppedPagination,
+  MTableScrollbar
+} from '@components';
 
 export default class MaterialTable extends React.Component {
   dataManager = new DataManager();
@@ -104,6 +106,15 @@ export default class MaterialTable extends React.Component {
         if (this.isRemoteData()) {
           this.onQueryChange(this.state.query);
         }
+        /**
+         * THIS WILL NEED TO BE REMOVED EVENTUALLY.
+         * Warn consumer of renamed prop.
+         */
+        if (this.props.onDoubleRowClick !== undefined) {
+          console.error(
+            'Property `onDoubleRowClick` has been renamed to `onRowDoubleClick`'
+          );
+        }
       }
     );
   }
@@ -121,7 +132,37 @@ export default class MaterialTable extends React.Component {
           : '';
     }
 
-    this.dataManager.setColumns(props.columns, prevColumns);
+    const columnsCopy = cloneDeep(props.columns);
+
+    if (props.options.persistentGroupingsId) {
+      let materialTableGroupings = localStorage.getItem(
+        'material-table-groupings'
+      );
+
+      if (materialTableGroupings) {
+        materialTableGroupings = JSON.parse(materialTableGroupings);
+
+        if (materialTableGroupings[props.options.persistentGroupingsId]) {
+          materialTableGroupings[props.options.persistentGroupingsId].forEach(
+            (savedGrouping) => {
+              const column = columnsCopy.find(
+                (col) => col.field === savedGrouping.field
+              );
+              if (column) {
+                if (!column.tableData) {
+                  column.tableData = {};
+                }
+                column.tableData.groupOrder = savedGrouping.groupOrder;
+                column.tableData.groupSort = savedGrouping.groupSort;
+                column.tableData.columnOrder = savedGrouping.columnOrder;
+              }
+            }
+          );
+        }
+      }
+    }
+
+    this.dataManager.setColumns(columnsCopy, prevColumns);
     this.dataManager.setDefaultExpanded(props.options.defaultExpanded);
     this.dataManager.changeRowEditing();
 
@@ -152,7 +193,8 @@ export default class MaterialTable extends React.Component {
     );
     isInit && this.dataManager.changeSearchText(props.options.searchText || '');
     isInit &&
-    this.dataManager.changeCurrentPage(
+    this.dataManager.changeSearchDebounce(props.options.searchDebounceDelay);
+    isInit && this.dataManager.changeCurrentPage(
       props.options.initialPage ? props.options.initialPage : 0
     );
     isInit && this.dataManager.changePageSize(props.options.pageSize);
@@ -175,9 +217,9 @@ export default class MaterialTable extends React.Component {
     const fixedPrevColumns = this.cleanColumns(prevProps.columns);
     const fixedPropsColumns = this.cleanColumns(this.props.columns);
 
-    let propsChanged = !equal(fixedPrevColumns, fixedPropsColumns);
-    propsChanged =
-      propsChanged || !equal(prevProps.options, this.props.options);
+    const columnPropsChanged = !equal(fixedPrevColumns, fixedPropsColumns);
+    let propsChanged =
+      columnPropsChanged || !equal(prevProps.options, this.props.options);
     if (!this.isRemoteData()) {
       propsChanged = propsChanged || !equal(prevProps.data, this.props.data);
     }
@@ -188,6 +230,7 @@ export default class MaterialTable extends React.Component {
       this.setState(this.dataManager.getRenderState());
       if (
         process.env.NODE_ENV === 'development' &&
+        columnPropsChanged &&
         !this.checkedForFunctions &&
         prevProps.columns.length !== 0
       ) {
@@ -435,6 +478,13 @@ export default class MaterialTable extends React.Component {
       checked,
       this.props.options.selectionProps
     );
+    this.setState(this.dataManager.getRenderState(), () =>
+      this.onSelectionChange()
+    );
+  };
+
+  onGroupSelected = (checked, path) => {
+    this.dataManager.changeGroupSelected(checked, path);
     this.setState(this.dataManager.getRenderState(), () =>
       this.onSelectionChange()
     );
@@ -997,6 +1047,7 @@ export default class MaterialTable extends React.Component {
             ).length > 0
           }
           showSelectAllCheckbox={props.options.showSelectAllCheckbox}
+          showSelectGroupCheckbox={props.options.showSelectGroupCheckbox}
           orderBy={this.state.orderBy}
           orderDirection={this.state.orderDirection}
           onAllSelected={this.onAllSelected}
@@ -1034,6 +1085,7 @@ export default class MaterialTable extends React.Component {
         isTreeData={this.props.parentChildData !== undefined}
         onFilterChanged={this.onFilterChange}
         onRowSelected={this.onRowSelected}
+        onGroupSelected={this.onGroupSelected}
         onToggleDetailPanel={this.onToggleDetailPanel}
         onGroupExpandChanged={this.onGroupExpandChanged}
         onTreeExpandChanged={this.onTreeExpandChanged}
@@ -1044,7 +1096,7 @@ export default class MaterialTable extends React.Component {
           ...this.props.localization.body
         }}
         onRowClick={this.props.onRowClick}
-        onDoubleRowClick={this.props.onDoubleRowClick}
+        onRowDoubleClick={this.props.onRowDoubleClick}
         showAddRow={this.state.showAddRow}
         hasAnyEditingRow={
           !!(this.state.lastEditingRow || this.state.showAddRow)
@@ -1091,9 +1143,10 @@ export default class MaterialTable extends React.Component {
       result.push(selectionWidth + 'px');
     }
 
-    for (let i = 0; i < Math.abs(count) && i < props.columns.length; i++) {
-      const colDef =
-        props.columns[count >= 0 ? i : props.columns.length - 1 - i];
+    for (let i = 0; i < Math.abs(count) && i < this.state.columns.length; i++) {
+      const colDef = this.state.columns[
+        count >= 0 ? i : this.state.columns.length - 1 - i
+      ];
       if (colDef.tableData) {
         if (typeof colDef.tableData.width === 'number') {
           result.push(colDef.tableData.width + 'px');
@@ -1150,7 +1203,9 @@ export default class MaterialTable extends React.Component {
               searchFieldVariant={props.options.searchFieldVariant}
               title={props.title}
               searchText={this.dataManager.searchText}
+              searchDebounceDelay={this.dataManager.searchDebounceDelay}
               onSearchChanged={this.onSearchChangeDebounce}
+              isRemoteData={this.isRemoteData()}
               dataManager={this.dataManager}
               onColumnsChanged={this.onChangeColumnHidden}
               localization={{
@@ -1174,9 +1229,10 @@ export default class MaterialTable extends React.Component {
                 )}
               onSortChanged={this.onChangeGroupOrder}
               onGroupRemoved={this.onGroupRemoved}
+              persistentGroupingsId={props.options.persistentGroupingsId}
             />
           )}
-          <ScrollBar double={props.options.doubleHorizontalScroll}>
+          <MTableScrollbar double={props.options.doubleHorizontalScroll}>
             <Droppable droppableId='headers' direction='horizontal'>
               {(provided, snapshot) => {
                 const table = this.renderTable(props);
@@ -1262,7 +1318,7 @@ export default class MaterialTable extends React.Component {
                 );
               }}
             </Droppable>
-          </ScrollBar>
+          </MTableScrollbar>
           {(this.state.isLoading || props.isLoading) &&
           props.options.loadingType === 'linear' && (
             <div style={{
@@ -1327,44 +1383,6 @@ export default class MaterialTable extends React.Component {
     );
   }
 }
-
-const style = () => ({
-  horizontalScrollContainer: {
-    '& ::-webkit-scrollbar': {
-      '-webkit-appearance': 'none'
-    },
-    '& ::-webkit-scrollbar:horizontal': {
-      height: 8
-    },
-    '& ::-webkit-scrollbar-thumb': {
-      borderRadius: 4,
-      border: '2px solid white',
-      backgroundColor: 'rgba(0, 0, 0, .3)'
-    }
-  }
-});
-
-const ScrollBar = withStyles(style)(({
-  double,
-  children,
-  classes
-}) => {
-  if (double) {
-    return <DoubleScrollbar>{children}</DoubleScrollbar>;
-  } else {
-    return (
-      <div
-        className={classes.horizontalScrollContainer}
-        style={{
-          overflowX: 'auto',
-          position: 'relative'
-        }}
-      >
-        {children}
-      </div>
-    );
-  }
-});
 
 function functionlessColumns(columns) {
   return columns.map((col) =>
